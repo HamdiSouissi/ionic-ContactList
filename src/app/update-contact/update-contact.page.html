@@ -24,6 +24,15 @@
       <ion-label position="floating">Numéro de téléphone fix</ion-label>
       <ion-input [(ngModel)]="tel2" type="number"></ion-input>
     </ion-item>
+    <ion-item>
+      <ion-label position="floating">Catégories</ion-label>
+      <ion-select [(ngModel)]="contactCategory">
+          <ion-select-option value="Amis">Amis</ion-select-option>
+          <ion-select-option value="Famille">Famille</ion-select-option>
+          <ion-select-option value="Professionnel">Professionnel</ion-select-option>
+          <ion-select-option value="Autre">Autre</ion-select-option>
+      </ion-select>
+    </ion-item>
     <ion-button class="ion-margin" expand="block" (click)="update()"> Mettre à jour </ion-button>
   </ion-card>
 
