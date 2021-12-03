@@ -10,6 +10,7 @@ import { ContactService } from '../contact.service';
 })
 export class AddNewContactPage implements OnInit {
   categories =[]
+  contactList = []
   categorySelectedCategory
   nom:string
   prenom:string
@@ -18,7 +19,9 @@ export class AddNewContactPage implements OnInit {
   dateCreation:Date
   contactObject
   itemCategory
-  constructor(public modalCtrl:ModalController, public contactService:ContactService) { }
+
+  constructor(public modalCtrl:ModalController, public contactService:ContactService) { 
+  }
 
   ngOnInit() {
     this.categories.push('Amis')
@@ -40,6 +43,8 @@ export class AddNewContactPage implements OnInit {
     dateCreation: Date.now()
   })
 
+  
+
 let uid = this.nom + this.prenom
 
 if (uid){
@@ -58,4 +63,7 @@ console.log("ajouter un numéro de téléphone");
     this.categorySelectedCategory = this.categories[index]
     console.log(this.categorySelectedCategory);
   }
+
+
+
 }

@@ -17,13 +17,21 @@ export class UpdateContactPage implements OnInit {
   dateMaj: Date
   dateCreation:Date
   contactObject
+  categories =[]
+  categorySelectedCategory
+  itemCategory
   constructor(public modalCtrl:ModalController,public contactService:ContactService) { }
 
   ngOnInit() {
+    this.categories.push('Amis')
+    this.categories.push('Famille')
+    this.categories.push('Professionnel')
+    this.categories.push('Autre')
        this.nom = this.contact.value.nom
        this.prenom = this.contact.value.prenom
        this.tel1 = this.contact.value.tel1
        this.tel2 = this.contact.value.tel2
+       this.categorySelectedCategory = this.contact.value.itemCategory
        this.dateCreation = this.contact.value.dateCreation
        this.dateMaj = this.contact.value.dateMaj
 
@@ -38,6 +46,7 @@ export class UpdateContactPage implements OnInit {
       prenom:this.prenom,
       tel1: this.tel1,
       tel2: this.tel2,
+      itemCategory:this.categorySelectedCategory,
       dateCreation:this.dateCreation,
       dateMaj : Date.now()
 
@@ -45,6 +54,11 @@ export class UpdateContactPage implements OnInit {
     let uid =this.contact.key
     await this.contactService.updateContact(uid,this.contactObject)
     this.dismis()
+  }
+
+  selectCategory(index){
+    this.categorySelectedCategory = this.categories[index]
+    console.log(this.categorySelectedCategory);
   }
 
 }

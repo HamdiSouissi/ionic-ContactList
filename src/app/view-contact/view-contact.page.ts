@@ -17,6 +17,9 @@ export class ViewContactPage implements OnInit {
   dateCreation:Date
   dateMaj : Date
   contactObject
+  categories =[]
+  categorySelectedCategory
+  itemCategory
   constructor(public modalCtrl:ModalController,public contactService:ContactService) { }
 
   ngOnInit() {
@@ -24,6 +27,7 @@ export class ViewContactPage implements OnInit {
        this.prenom = this.contact.value.prenom
        this.tel1 = this.contact.value.tel1
        this.tel2 = this.contact.value.tel2
+       this.categorySelectedCategory = this.contact.value.itemCategory
        this.dateCreation = this.contact.value.dateCreation
        this.dateMaj = this.contact.value.dateMaj
 

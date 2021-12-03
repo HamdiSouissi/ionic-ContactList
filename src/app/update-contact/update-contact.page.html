@@ -24,6 +24,22 @@
       <ion-label position="floating">Numéro de téléphone fix</ion-label>
       <ion-input [(ngModel)]="tel2" type="number"></ion-input>
     </ion-item>
+    <ion-item>
+      <ion-icon name="pricetag-outline" slot="start"></ion-icon>
+      <ion-label> Catégorie</ion-label>
+      <span>{{categorySelectedCategory}}</span>
+    </ion-item>
+ 
+    <ion-item>
+      <ion-chip  *ngFor="let tag of categories; let i = index" color="secondary" outline="true" (click)="selectCategory(i)">
+        <ion-row>
+          <ion-col size="12">
+           <ion-label color="secondary">{{tag}}</ion-label>
+ 
+          </ion-col>
+        </ion-row>
+      </ion-chip>
+      </ion-item>
     <ion-button class="ion-margin" expand="block" (click)="update()"> Mettre à jour </ion-button>
   </ion-card>
 
