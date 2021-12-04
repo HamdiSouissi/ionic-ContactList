@@ -1,7 +1,9 @@
 import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
+import { toastController } from '@ionic/core';
 import { ContactService } from '../contact.service';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-add-new-contact',
@@ -10,7 +12,6 @@ import { ContactService } from '../contact.service';
 })
 export class AddNewContactPage implements OnInit {
   categories =[]
-  contactList = []
   categorySelectedCategory
   nom:string
   prenom:string
@@ -19,9 +20,7 @@ export class AddNewContactPage implements OnInit {
   dateCreation:Date
   contactObject
   itemCategory
-
-  constructor(public modalCtrl:ModalController, public contactService:ContactService) { 
-  }
+  constructor(public modalCtrl:ModalController, public contactService:ContactService,public toastCtrl:ToastController,public storage:Storage) { }
 
   ngOnInit() {
     this.categories.push('Amis')
@@ -33,6 +32,10 @@ export class AddNewContactPage implements OnInit {
    await this.modalCtrl.dismiss(this.contactObject)
  }
 
+
+
+
+
  async addContact(){
   this.contactObject=({
     nom:this.nom,
@@ -42,16 +45,20 @@ export class AddNewContactPage implements OnInit {
     itemCategory:this.categorySelectedCategory,
     dateCreation: Date.now()
   })
+ 
 
-  
+
 
 let uid = this.nom + this.prenom
 
 if (uid){
   await this.contactService.addContact(uid,this.contactObject)
 
-}else {
-console.log("ajouter un numéro de téléphone");
+}
+else {
+this.openToast()
+
+
 }
 
 
@@ -63,6 +70,17 @@ console.log("ajouter un numéro de téléphone");
     this.categorySelectedCategory = this.categories[index]
     console.log(this.categorySelectedCategory);
   }
+
+  async openToast() {  
+    const toast = await this.toastCtrl.create({  
+      message: 'ajouter un numéro de téléphone',   
+      duration: 4000  
+    });  
+    toast.present();  
+  }  
+
+
+
 
 
 
