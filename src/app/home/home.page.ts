@@ -17,44 +17,7 @@ export class HomePage {
 
   searchTerm : string;
   contactList = [
-    {
-      nom :'Hamdi',
-      prenom : 'souissi',
-      tel1 : '29642655',
-      tel2 :'27658412',
-      date_creation : '24-11-21',
-      date_update : '24-11-21'
-
-    },
-    {
-      nom :'Ahmed',
-      prenom : 'Mokaddem',
-      tel1 : '29642655',
-      tel2 :'27658412',
-      date_creation : '12-11-21',
-      date_update : '24-11-21'
-
-    }
-    ,
-    {
-      nom :'Seif',
-      prenom : 'Zoubir',
-      tel1 : '29642655',
-      tel2 :'27658412',
-      date_creation : '24-11-21',
-      date_update : '24-11-21'
-
-    }
-    ,
-    {
-      nom :'Khalil',
-      prenom : 'Aloui',
-      tel1 : '29642655',
-      tel2 :'27658412',
-      date_creation : '24-11-21',
-      date_update : '24-11-21'
-
-    }
+   
   ];
 
   constructor(public modalCtrl:ModalController, public contactService:ContactService) {
@@ -105,7 +68,10 @@ export class HomePage {
 
   async addContact(){
     const modal = await this.modalCtrl.create({
-      component: AddNewContactPage
+      component: AddNewContactPage,
+      componentProps: {
+        item:this.contactList
+      }
     })
 
     modal.onDidDismiss().then(contactObject =>{

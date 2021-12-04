@@ -1,18 +1,18 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>
       Ma liste de contacts
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" color="tertiary">
   <ion-searchbar  [(ngModel)]="searchTerm"  placeholder="Chercher" showCancelButton="focus" animated></ion-searchbar>
 
  <!-- List of Sliding Items -->
-<ion-list>
-  <ion-item-sliding *ngFor="let contact of contactList | filter:searchTerm; let i=index">
-    <ion-item (click)="viewContact(contact)">
+<ion-list color="tertiary">
+  <ion-item-sliding *ngFor="let contact of contactList | filter:searchTerm; let i=index" color="tertiary">
+    <ion-item (click)="viewContact(contact)"  color="tertiary" >
       <ion-row>
         <ion-col size="12">
           <ion-label>{{contact.value.nom}} {{contact.value.prenom}}</ion-label>
